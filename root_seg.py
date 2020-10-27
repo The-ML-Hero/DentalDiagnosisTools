@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 import cv2
 import detectron2
 from detectron2.utils.logger import setup_logger
