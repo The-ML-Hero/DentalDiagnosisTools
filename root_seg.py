@@ -40,7 +40,7 @@ def write():
     )
   uploaded_file_img = st.file_uploader("Choose an Input Image", type="png",accept_multiple_files=False)
   if uploaded_file_img is not None:
-    url_mask = 'https://blob-ap-south-1-ukyez4.s3.ap-south-1.amazonaws.com/sara/c6/c668/c668fa65-a0ec-4905-9d9a-341368dc3bb9.bin?response-content-disposition=attachment%3B%20filename%3D%22MASK_RCNN_ROOT_SEGMENTATION.pth%22&response-content-type=&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI75SICYCOZ7DPWTA%2F20201027%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20201027T125742Z&X-Amz-SignedHeaders=host&X-Amz-Expires=1800&X-Amz-Signature=2592ecfbd1f7de226c77b15782d1f82a852115fe6602e80b1ddbdd8406bce030'
+    url_mask = 'https://blob-ap-south-1-ukyez4.s3.ap-south-1.amazonaws.com/sara/b9/b92b/b92b2d3d-9e01-449c-afeb-771bc966a670.bin?response-content-disposition=attachment%3B%20filename%3D%22MASK_RCNN_ROOT_SEGMENTATION.pth%22&response-content-type=&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI75SICYCOZ7DPWTA%2F20201027%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20201027T135506Z&X-Amz-SignedHeaders=host&X-Amz-Expires=1800&X-Amz-Signature=6b2dc1d0460357bbc2176dccdac04874685ed437074fda658206ce66b8eb72eb'
     requests.get(url_mask ,stream=True)    
     file_random = secrets.token_hex(4)
     o = int(np.random.randint(low=10301319,high=9987869996)) 
@@ -56,7 +56,7 @@ def write():
     cfg.SOLVER.BASE_LR = 0.00025
     cfg.SOLVER.MAX_ITER = 800
     cfg.MODEL.ROI_HEADS.NUM_CLASSES = 3
-    cfg.MODEL.WEIGHTS = 'MASK_RCNN_ROOT_SEGMENTATION.pth'  # path to the model we just trained
+    cfg.MODEL.WEIGHTS = './MASK_RCNN_ROOT_SEGMENTATION.pth'  # path to the model we just trained
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = confidence   # set a custom testing threshold
     predictor = DefaultPredictor(cfg)
     MetadataCatalog.get(f"tooth_segmentation_maskrcnn{o}").thing_classes = ["CShaped", "Normal"]
