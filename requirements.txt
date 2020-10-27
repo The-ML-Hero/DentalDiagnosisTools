@@ -1,4 +1,5 @@
 matplotlib
+scipy
 opencv-python-headless
 opencv-contrib-python-headless
 streamlit
