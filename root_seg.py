@@ -86,7 +86,9 @@ def write():
         cv2.imwrite(f'output_MASK{file_random}.png',out.get_image()[:, :, ::-1])
         out_i = PIL.Image.open(f'output_MASK{file_random}.png') 
         st.image(out_i, caption='Predicted Masks', use_column_width=True)
-
+    else:
+        url_mask = 'https://srv-store2.gofile.io/download/gHYIG9/MASK_RCNN_ROOT_SEGMENTATION.pth'
+        requests.get(url_mask ,stream=True)
     #image_root_seg_out = open(f'output_MASK{file_random}.png','rb')
     #root_form_out = RootDetector(_id = secrets.token_hex(4),description='Predicted Root Detector Image',image_root=image_root_seg_out)
     #root_form_out.save()
