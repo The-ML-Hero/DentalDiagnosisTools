@@ -31,7 +31,7 @@ class RootDetector(Document):
     image_root = FileField()
 
 def write():
-  url_mask = 'https://blob-ap-south-1-ukyez4.s3.ap-south-1.amazonaws.com/sara/b9/b92b/b92b2d3d-9e01-449c-afeb-771bc966a670.bin?response-content-disposition=attachment%3B%20filename%3D%22MASK_RCNN_ROOT_SEGMENTATION.pth%22&response-content-type=&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI75SICYCOZ7DPWTA%2F20201027%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20201027T135506Z&X-Amz-SignedHeaders=host&X-Amz-Expires=1800&X-Amz-Signature=6b2dc1d0460357bbc2176dccdac04874685ed437074fda658206ce66b8eb72eb'
+  url_mask = 'https://srv-store2.gofile.io/download/gHYIG9/MASK_RCNN_ROOT_SEGMENTATION.pth'
   requests.get(url_mask ,stream=True)
   if os.path.exists("MASK_RCNN_ROOT_SEGMENTATION.pth"):    
       st.set_option('deprecation.showfileUploaderEncoding', False)
