@@ -33,6 +33,7 @@ class RootDetector(Document):
 def write():
   url_mask = 'https://srv-store2.gofile.io/download/gHYIG9/MASK_RCNN_ROOT_SEGMENTATION.pth'
   requests.get(url_mask ,stream=True)
+
   if os.path.exists("MASK_RCNN_ROOT_SEGMENTATION.pth"):    
       st.set_option('deprecation.showfileUploaderEncoding', False)
       st.title('Root Anatomy Prediction by A.Adithya Sherwood IX-E')
@@ -86,7 +87,7 @@ def write():
         cv2.imwrite(f'output_MASK{file_random}.png',out.get_image()[:, :, ::-1])
         out_i = PIL.Image.open(f'output_MASK{file_random}.png') 
         st.image(out_i, caption='Predicted Masks', use_column_width=True)
-   else:
+    else:
         url_mask = 'https://srv-store2.gofile.io/download/gHYIG9/MASK_RCNN_ROOT_SEGMENTATION.pth'
         requests.get(url_mask ,stream=True)
     #image_root_seg_out = open(f'output_MASK{file_random}.png','rb')
