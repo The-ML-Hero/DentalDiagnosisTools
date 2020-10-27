@@ -4,6 +4,7 @@ opencv-contrib-python-headless
 streamlit
 cython
 mongoengine
+dnspython
 tqdm
 pillow
 --find-links https://download.pytorch.org/whl/torch_stable.html
