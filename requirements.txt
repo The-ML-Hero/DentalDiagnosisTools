@@ -3,6 +3,7 @@ opencv-python-headless
 opencv-contrib-python-headless
 streamlit
 cython
+mongoengine
 tqdm
 pillow
 --find-links https://download.pytorch.org/whl/torch_stable.html
