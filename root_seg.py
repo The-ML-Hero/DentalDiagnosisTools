@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import cv2
+import wget
 import detectron2
 from detectron2.utils.logger import setup_logger
 setup_logger()
@@ -32,7 +33,7 @@ class RootDetector(Document):
 
 def write():
   url_mask = 'https://srv-store2.gofile.io/download/gHYIG9/MASK_RCNN_ROOT_SEGMENTATION.pth'
-  os.system(f"wget {url_mask}")
+  wget.download(url_mask)
 
   if os.path.exists("MASK_RCNN_ROOT_SEGMENTATION.pth"):    
       st.set_option('deprecation.showfileUploaderEncoding', False)
@@ -44,7 +45,6 @@ def write():
         )
       uploaded_file_img = st.file_uploader("Choose an Input Image", type="png",accept_multiple_files=False)
       if uploaded_file_img is not None:
-
         file_random = secrets.token_hex(4)
         o = int(np.random.randint(low=10301319,high=9987869996)) 
         cfg = get_cfg()
