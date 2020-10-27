@@ -31,59 +31,61 @@ class RootDetector(Document):
     image_root = FileField()
 
 def write():
-  st.set_option('deprecation.showfileUploaderEncoding', False)
-  st.title('Root Anatomy Prediction by A.Adithya Sherwood IX-E')
-  st.subheader('Disclaimer: Please check with your local specialized dentist, if you are in doubt please try atleast twice.')
-  confidence =  st.slider(
-    'Please Select a Confidence Value',
-    0.1, 1.0, 0.05
-    )
-  uploaded_file_img = st.file_uploader("Choose an Input Image", type="png",accept_multiple_files=False)
-  if uploaded_file_img is not None:
-    url_mask = 'https://blob-ap-south-1-ukyez4.s3.ap-south-1.amazonaws.com/sara/b9/b92b/b92b2d3d-9e01-449c-afeb-771bc966a670.bin?response-content-disposition=attachment%3B%20filename%3D%22MASK_RCNN_ROOT_SEGMENTATION.pth%22&response-content-type=&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI75SICYCOZ7DPWTA%2F20201027%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20201027T135506Z&X-Amz-SignedHeaders=host&X-Amz-Expires=1800&X-Amz-Signature=6b2dc1d0460357bbc2176dccdac04874685ed437074fda658206ce66b8eb72eb'
-    requests.get(url_mask ,stream=True)    
-    file_random = secrets.token_hex(4)
-    o = int(np.random.randint(low=10301319,high=9987869996)) 
-    cfg = get_cfg()
-    cfg.MODEL.DEVICE='cpu'
-    cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_DC5_3x.yaml"))
-    register_coco_instances(f"tooth_segmentation_maskrcnn{o}",{},str(f"./annotations/instances_default.json"),str(f"./images"))
-    cfg.DATASETS.TRAIN = (f"tooth_segmentation_maskrcnn{o}",)
-    cfg.DATASETS.TEST = ()
-    cfg.DATASETS.NUM_WORKERS = 2
-    cfg.SOLVER.IMS_PER_BATCH = 2
-    cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = 100   # faster, and good enough for this toy dataset (default: 512)
-    cfg.SOLVER.BASE_LR = 0.00025
-    cfg.SOLVER.MAX_ITER = 800
-    cfg.MODEL.ROI_HEADS.NUM_CLASSES = 3
-    cfg.MODEL.WEIGHTS = './MASK_RCNN_ROOT_SEGMENTATION.pth'  # path to the model we just trained
-    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = confidence   # set a custom testing threshold
-    predictor = DefaultPredictor(cfg)
-    MetadataCatalog.get(f"tooth_segmentation_maskrcnn{o}").thing_classes = ["CShaped", "Normal"]
-    img_pil = PIL.Image.open(uploaded_file_img)
-    img_pil = img_pil.resize((512,512))
-    img_pil.save(f'input_mask{file_random}.png')
+  url_mask = 'https://blob-ap-south-1-ukyez4.s3.ap-south-1.amazonaws.com/sara/b9/b92b/b92b2d3d-9e01-449c-afeb-771bc966a670.bin?response-content-disposition=attachment%3B%20filename%3D%22MASK_RCNN_ROOT_SEGMENTATION.pth%22&response-content-type=&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI75SICYCOZ7DPWTA%2F20201027%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20201027T135506Z&X-Amz-SignedHeaders=host&X-Amz-Expires=1800&X-Amz-Signature=6b2dc1d0460357bbc2176dccdac04874685ed437074fda658206ce66b8eb72eb'
+  requests.get(url_mask ,stream=True)
+  if os.path.exists("MASK_RCNN_ROOT_SEGMENTATION.pth"):    
+      st.set_option('deprecation.showfileUploaderEncoding', False)
+      st.title('Root Anatomy Prediction by A.Adithya Sherwood IX-E')
+      st.subheader('Disclaimer: Please check with your local specialized dentist, if you are in doubt please try atleast twice.')
+      confidence =  st.slider(
+        'Please Select a Confidence Value',
+        0.1, 1.0, 0.05
+        )
+      uploaded_file_img = st.file_uploader("Choose an Input Image", type="png",accept_multiple_files=False)
+      if uploaded_file_img is not None:
 
-    #image_root_seg = open(f'input_mask{file_random}.png','rb')
-    #root_form = RootDetector(_id = secrets.token_hex(4),description='Uploaded Root Detector Image',image_root=image_root_seg)
-    #root_form.save()
+        file_random = secrets.token_hex(4)
+        o = int(np.random.randint(low=10301319,high=9987869996)) 
+        cfg = get_cfg()
+        cfg.MODEL.DEVICE='cpu'
+        cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_DC5_3x.yaml"))
+        register_coco_instances(f"tooth_segmentation_maskrcnn{o}",{},str(f"./annotations/instances_default.json"),str(f"./images"))
+        cfg.DATASETS.TRAIN = (f"tooth_segmentation_maskrcnn{o}",)
+        cfg.DATASETS.TEST = ()
+        cfg.DATASETS.NUM_WORKERS = 2
+        cfg.SOLVER.IMS_PER_BATCH = 2
+        cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = 100   # faster, and good enough for this toy dataset (default: 512)
+        cfg.SOLVER.BASE_LR = 0.00025
+        cfg.SOLVER.MAX_ITER = 800
+        cfg.MODEL.ROI_HEADS.NUM_CLASSES = 3
+        cfg.MODEL.WEIGHTS = './MASK_RCNN_ROOT_SEGMENTATION.pth'  # path to the model we just trained
+        cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = confidence   # set a custom testing threshold
+        predictor = DefaultPredictor(cfg)
+        MetadataCatalog.get(f"tooth_segmentation_maskrcnn{o}").thing_classes = ["CShaped", "Normal"]
+        img_pil = PIL.Image.open(uploaded_file_img)
+        img_pil = img_pil.resize((512,512))
+        img_pil.save(f'input_mask{file_random}.png')
 
-    st.image(img_pil, caption='Uploaded Image.', use_column_width=True)
-    st.write("")
-    image = cv2.imread(f'input_mask{file_random}.png')
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    #image = cv2.copyMakeBorder(image, 150, 150, 150, 150, cv2.BORDER_CONSTANT,value=[255,255,255])
-    output = predictor(image)
-    v = Visualizer(image[:, :, ::-1],
-                  metadata=MetadataCatalog.get(f"tooth_segmentation_maskrcnn{o}"), 
-                  scale=2, 
-                  # remove the colors of unsegmented pixels. This option is only available for segmentation models
-    )
+        #image_root_seg = open(f'input_mask{file_random}.png','rb')
+        #root_form = RootDetector(_id = secrets.token_hex(4),description='Uploaded Root Detector Image',image_root=image_root_seg)
+        #root_form.save()
 
-    out = v.draw_instance_predictions(output["instances"].to("cpu"))
-    cv2.imwrite(f'output_MASK{file_random}.png',out.get_image()[:, :, ::-1])
-    out_i = PIL.Image.open(f'output_MASK{file_random}.png') 
-    st.image(out_i, caption='Predicted Masks', use_column_width=True)
+        st.image(img_pil, caption='Uploaded Image.', use_column_width=True)
+        st.write("")
+        image = cv2.imread(f'input_mask{file_random}.png')
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        #image = cv2.copyMakeBorder(image, 150, 150, 150, 150, cv2.BORDER_CONSTANT,value=[255,255,255])
+        output = predictor(image)
+        v = Visualizer(image[:, :, ::-1],
+                      metadata=MetadataCatalog.get(f"tooth_segmentation_maskrcnn{o}"), 
+                      scale=2, 
+                      # remove the colors of unsegmented pixels. This option is only available for segmentation models
+        )
+
+        out = v.draw_instance_predictions(output["instances"].to("cpu"))
+        cv2.imwrite(f'output_MASK{file_random}.png',out.get_image()[:, :, ::-1])
+        out_i = PIL.Image.open(f'output_MASK{file_random}.png') 
+        st.image(out_i, caption='Predicted Masks', use_column_width=True)
 
     #image_root_seg_out = open(f'output_MASK{file_random}.png','rb')
     #root_form_out = RootDetector(_id = secrets.token_hex(4),description='Predicted Root Detector Image',image_root=image_root_seg_out)
