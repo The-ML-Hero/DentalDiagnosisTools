@@ -1,0 +1,13 @@
+matplotlib
+opencv-python-headless
+opencv-contrib-python-headless
+streamlit
+cython
+tqdm
+pillow
+--find-links https://download.pytorch.org/whl/torch_stable.html
+--find-links https://dl.fbaipublicfiles.com/detectron2/wheels/cpu/torch1.6/index.html
+torch===1.6.0+cpu
+torchvision===0.7.0+cpu
+detectron2
+pycocotools-fix
