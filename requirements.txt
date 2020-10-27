@@ -5,6 +5,7 @@ opencv-contrib-python-headless
 streamlit
 cython
 mongoengine
+wget
 dnspython
 tqdm
 pillow
