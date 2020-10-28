@@ -34,7 +34,7 @@ class RootDetector(Document):
 @st.cache
 def write():
 
-  if os.path.exists("MASK_RCNN_ROOT_SEGMENTATION.pth"):    
+  if 1==1:    
       st.set_option('deprecation.showfileUploaderEncoding', False)
       st.title('Root Anatomy Prediction by A.Adithya Sherwood IX-E')
       st.subheader('Disclaimer: Please check with your local specialized dentist, if you are in doubt please try atleast twice.')
