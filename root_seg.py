@@ -34,7 +34,7 @@ class RootDetector(Document):
 @st.cache
 def write():
 
-  if true:    
+  if True:    
       st.set_option('deprecation.showfileUploaderEncoding', False)
       st.title('Root Anatomy Prediction by A.Adithya Sherwood IX-E')
       st.subheader('Disclaimer: Please check with your local specialized dentist, if you are in doubt please try atleast twice.')
