@@ -15,7 +15,7 @@ import flurosis_tooth_detection
 MENU = {
     
     "Fracture Tooth Detection" : fracture_tooth_detection,
-    "Root Anatomy Prediction" : root_seg,
+    #"Root Anatomy Prediction" : root_seg,
     "Flurosis Detection" : flurosis_tooth_detection,	
     "Tooth Fracture Reconstruction" : tooth_reconstruction,	
 }
