@@ -30,7 +30,7 @@ def write():
   if uploaded_file is not None:
       file_random = secrets.token_hex(4)
       image = PIL.Image.open(uploaded_file)
-      image = image.resize((416,416))
+      image = image.resize((512,512))
       image.save(f'./Test_Fracture{file_random}.jpg')
 
       #image_frac = open(f'./Test_Fracture{file_random}.jpg','rb')
@@ -39,7 +39,7 @@ def write():
 
       st.image(image, caption='Uploaded Image.', use_column_width=True)
       st.write("")
-      os.system(f"python3 detect.py --weights './weights/best.pt' --img 416 --conf {str(conf_score)} --source ./Test_Fracture{file_random}.jpg --output ./inference/output ")
+      os.system(f"python3 detect.py --weights './weights/best (2).pt' --img 512 --conf {str(conf_score)} --source ./Test_Fracture{file_random}.jpg --output ./inference/output ")
       image_pred = PIL.Image.open(f'./inference/output/Test_Fracture{file_random}.jpg')
 
       #image_frac_output = open(f'./inference/output/Test_Fracture{file_random}.jpg','rb')
