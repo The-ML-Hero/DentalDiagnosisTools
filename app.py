@@ -5,7 +5,7 @@ import streamlit as st
 import streamlit.components.v1 as stc
 import tooth_reconstruction
 import display_app as udisp
-import Pulp_Segmentation
+#import Pulp_Segmentation
 import root_seg
 import fracture_tooth_detection
 import flurosis_tooth_detection
