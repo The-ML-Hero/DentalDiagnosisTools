@@ -36,9 +36,9 @@ def write():
       image = image.resize((416,416))
       image.save(f'./Test_Fracture{file_random}.jpg')
 
-      #image_frac = open(f'./Test_Fracture{file_random}.jpg','rb')
-      #fracture_form = FractureDetector(_id = secrets.token_hex(4),description='Uploaded Fracture Image',image_fracture=image_frac)
-      #fracture_form.save()
+      image_frac = open(f'./Test_Fracture{file_random}.jpg','rb')
+      fracture_form = FractureDetector(_id = secrets.token_hex(4),description='Uploaded Fracture Image',image_fracture=image_frac)
+      fracture_form.save()
 
       st.image(image, caption='Uploaded Image.', use_column_width=True)
       st.write("")
