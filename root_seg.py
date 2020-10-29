@@ -57,11 +57,7 @@ def write():
         cfg.SOLVER.BASE_LR = 0.00025
         cfg.SOLVER.MAX_ITER = 800
         cfg.MODEL.ROI_HEADS.NUM_CLASSES = 3
-        if os.path.exists('./dentaldiagnosistoolkitai'):
-            cfg.MODEL.WEIGHTS = './dentaldiagnosistoolkitai/MASK_RCNN_ROOT_SEGMENTATION.pth'  # path to the model we just trained
-        else:
-            os.system("git clone https://gitlab.com/sherwoodadithya/dentaldiagnosistoolkitai.git")
-            cfg.MODEL.WEIGHTS = './dentaldiagnosistoolkitai/MASK_RCNN_ROOT_SEGMENTATION.pth'
+        cfg.MODEL.WEIGHTS = './MASK_RCNN_ROOT_SEGMENTATION.pth'  # path to the model we just trained
         cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = confidence   # set a custom testing threshold
         predictor = DefaultPredictor(cfg)
         MetadataCatalog.get(f"tooth_segmentation_maskrcnn{o}").thing_classes = ["CShaped", "Normal"]
