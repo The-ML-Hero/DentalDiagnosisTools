@@ -14,7 +14,7 @@ import flurosis_tooth_detection
 #os.system("git clone https://gitlab.com/sherwoodadithya/dentaldiagnosistoolkitai.git")
 #shutil.move('./dentaldiagnosistoolkitai/MASK_RCNN_ROOT_SEGMENTATION.pth', './MASK_RCNN_ROOT_SEGMENTATION.pth')
 #os.system("ls")
-os.system("ifconfig")
+#os.system("ifconfig")
 MENU = {
     
     "Fracture Tooth Detection" : fracture_tooth_detection,
