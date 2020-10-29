@@ -1,10 +1,10 @@
 # DentalDiagnosisTools
 An AI Powered Platform for Dental Diagnosis LIKE:
 
-  1. **This text will be bold**
-  2. **This text will be bold**
-  3. **This text will be bold**
-  4.**This text will be bold**
+  1. **Root Internal Anatomy Prediction **
+  2. **Fluorosis Detection**
+  3. **Tooth Fracture Detection**
+  4. **Tooth Fracture Regenration**
   
   
   
