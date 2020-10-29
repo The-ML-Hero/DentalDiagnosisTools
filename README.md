@@ -8,4 +8,7 @@ An AI Powered Platform for Dental Diagnosis LIKE:
   
   
   
-If you are interested please click here [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/the-ml-hero/dentaldiagnosistools/main/app.py)
+If you are interested and don't want to setup everything in your PC. 
+
+
+Please Click Here [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/the-ml-hero/dentaldiagnosistools/main/app.py)
