@@ -39,7 +39,7 @@ def write():
 
       st.image(image, caption='Uploaded Image.', use_column_width=True)
       st.write("")
-      os.system(f"python3 detect.py --weights './weights/best (2).pt' --img 512 --conf {str(conf_score)} --source ./Test_Fracture{file_random}.jpg --output ./inference/output ")
+      os.system(f"python3 detect.py --weights './weights/best (1).pt' --img 512 --conf {str(conf_score)} --source ./Test_Fracture{file_random}.jpg --output ./inference/output ")
       image_pred = PIL.Image.open(f'./inference/output/Test_Fracture{file_random}.jpg')
 
       #image_frac_output = open(f'./inference/output/Test_Fracture{file_random}.jpg','rb')
