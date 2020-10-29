@@ -31,19 +31,18 @@ class RootDetector(Document):
     description = StringField(required=True)
     image_root = FileField()
     
-@st.cache
-def write():
 
-  if True:    
-      st.set_option('deprecation.showfileUploaderEncoding', False)
-      st.title('Root Anatomy Prediction by A.Adithya Sherwood IX-E')
-      st.subheader('Disclaimer: Please check with your local specialized dentist, if you are in doubt please try atleast twice.')
-      confidence =  st.slider(
-        'Please Select a Confidence Value',
-        0.1, 1.0, 0.05
-        )
-      uploaded_file_img = st.file_uploader("Choose an Input Image", type="png",accept_multiple_files=False)
-      if uploaded_file_img is not None:
+def write():
+    
+    st.set_option('deprecation.showfileUploaderEncoding', False)
+    st.title('Root Anatomy Prediction by A.Adithya Sherwood IX-E')
+    st.subheader('Disclaimer: Please check with your local specialized dentist, if you are in doubt please try atleast twice.')
+    confidence =  st.slider(
+    'Please Select a Confidence Value',
+    0.1, 1.0, 0.05
+    )
+    uploaded_file_img = st.file_uploader("Choose an Input Image", type="png",accept_multiple_files=False)
+    if uploaded_file_img is not None:
         file_random = secrets.token_hex(4)
         o = int(np.random.randint(low=10301319,high=9987869996)) 
         cfg = get_cfg()
@@ -77,9 +76,9 @@ def write():
         #image = cv2.copyMakeBorder(image, 150, 150, 150, 150, cv2.BORDER_CONSTANT,value=[255,255,255])
         output = predictor(image)
         v = Visualizer(image[:, :, ::-1],
-                      metadata=MetadataCatalog.get(f"tooth_segmentation_maskrcnn{o}"), 
-                      scale=2, 
-                      # remove the colors of unsegmented pixels. This option is only available for segmentation models
+                        metadata=MetadataCatalog.get(f"tooth_segmentation_maskrcnn{o}"), 
+                        scale=2, 
+                        # remove the colors of unsegmented pixels. This option is only available for segmentation models
         )
 
         out = v.draw_instance_predictions(output["instances"].to("cpu"))
