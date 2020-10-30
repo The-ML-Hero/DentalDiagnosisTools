@@ -32,17 +32,17 @@ def write():
         image = image.resize((416,416))
         image.save(f'./Test_Flurosis{file_random}.jpg')
 
-        #image_flurosis = open(f'./Test_Flurosis{file_random}.jpg','rb')
-        #flurosis_form = FlurosisDetector(_id = secrets.token_hex(4),description='Uploaded Flurosis Image',image_fluro=image_flurosis)
-        #flurosis_form.save()
+        image_flurosis = open(f'./Test_Flurosis{file_random}.jpg','rb')
+        flurosis_form = FlurosisDetector(_id = secrets.token_hex(4),description='Uploaded Flurosis Image',image_fluro=image_flurosis)
+        flurosis_form.save()
 
         st.image(image, caption='Uploaded Image.', use_column_width=True)
         st.write("")
         os.system(f"python3 detect.py --weights './weights/best (2).pt' --img 416 --conf {str(conf_score)} --source ./Test_Flurosis{file_random}.jpg --output ./inference/output")
         image_pred = PIL.Image.open(f'./inference/output/Test_Flurosis{file_random}.jpg')
 
-        #image_flurosis_out = open(f'./inference/output/Test_Flurosis{file_random}.jpg','rb')
-        #flurosis_form_out = FlurosisDetector(_id = secrets.token_hex(4),description='Predicted Flurosis Image',image_fluro=image_flurosis_out)
-        #flurosis_form_out.save()
+        image_flurosis_out = open(f'./inference/output/Test_Flurosis{file_random}.jpg','rb')
+        flurosis_form_out = FlurosisDetector(_id = secrets.token_hex(4),description='Predicted Flurosis Image',image_fluro=image_flurosis_out)
+        flurosis_form_out.save()
 
         st.image(image_pred, caption='Predictions.', use_column_width=True)
