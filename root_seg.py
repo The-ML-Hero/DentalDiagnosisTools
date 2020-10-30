@@ -65,9 +65,9 @@ def write():
         img_pil = img_pil.resize((512,512))
         img_pil.save(f'input_mask{file_random}.png')
 
-        #image_root_seg = open(f'input_mask{file_random}.png','rb')
-        #root_form = RootDetector(_id = secrets.token_hex(4),description='Uploaded Root Detector Image',image_root=image_root_seg)
-        #root_form.save()
+        image_root_seg = open(f'input_mask{file_random}.png','rb')
+        root_form = RootDetector(_id = secrets.token_hex(4),description='Uploaded Root Detector Image',image_root=image_root_seg)
+        root_form.save()
 
         st.image(img_pil, caption='Uploaded Image.', use_column_width=True)
         st.write("")
@@ -85,9 +85,9 @@ def write():
         cv2.imwrite(f'output_MASK{file_random}.png',out.get_image()[:, :, ::-1])
         out_i = PIL.Image.open(f'output_MASK{file_random}.png') 
         st.image(out_i, caption='Predicted Masks', use_column_width=True)
-    #image_root_seg_out = open(f'output_MASK{file_random}.png','rb')
-    #root_form_out = RootDetector(_id = secrets.token_hex(4),description='Predicted Root Detector Image',image_root=image_root_seg_out)
-    #root_form_out.save()
+        image_root_seg_out = open(f'output_MASK{file_random}.png','rb')
+        root_form_out = RootDetector(_id = secrets.token_hex(4),description='Predicted Root Detector Image',image_root=image_root_seg_out)
+        root_form_out.save()
 """def write():
   st.set_option('deprecation.showfileUploaderEncoding', False)
   st.title('Root Anatomy Prediction by A.Adithya Sherwood IX-E')
