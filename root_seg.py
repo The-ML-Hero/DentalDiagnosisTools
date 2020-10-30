@@ -74,7 +74,8 @@ def write():
         st.write("")
         cropped_img = st_cropper(img_pil, realtime_update=True, box_color="#0000ff",
                                 aspect_ratio=(1,1))
-        cropped_img.save("input_mask_cropped{file_random}.png")
+        cropped_img = PIL.Image.read(cropped_img)
+        cropped_img.save(f'input_mask_cropped{file_random}.png')
         st.write("")
         st.image(cropped_img,caption='Cropped Image.', use_column_width=True)
         image = cv2.imread(f'input_mask_cropped{file_random}.png')
