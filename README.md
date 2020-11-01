@@ -21,3 +21,6 @@ Please Click Here [![Open in Streamlit](https://static.streamlit.io/badges/strea
 2. Download the MaskRCNN Model And Place it inside the Root Folder Of the Repo
 2. ```pip install -r requirements.txt```
 3.  ```streamlit run app.py``` And Voila Open Up the URL Shown
+
+## Steps to Download As A Executable
+[![Available on itch.io](http://jessemillar.github.io/available-on-itchio-badge/badge-color.png)](https://jessemillar.itch.io/darkest-moon)
