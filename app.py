@@ -1,4 +1,4 @@
-import os
+mport os
 import requests
 import shutil
 import sys
@@ -29,9 +29,7 @@ menu_selection = st.sidebar.radio("Use Case", list(MENU.keys()))
 menu = MENU[menu_selection]
 
 
-stc.iframe("""<iframe frameborder="0" src="https://itch.io/embed/807153" width="552" height="167">
-<a href="https://the-ml-hero.itch.io/dental-diagnosis">Dental Diagnosis by The-ML-Hero</a>
-</iframe>""")
+stc.html("""<iframe frameborder="0" src="https://itch.io/embed/807153?linkback=true&amp;border_width=5" width="560" height="175"><a href="https://the-ml-hero.itch.io/dental-diagnosis">Dental Diagnosis by The-ML-Hero</a></iframe>""")
 with st.spinner(f"Loading {menu_selection} ..."):
       udisp.render_page(menu)
 
