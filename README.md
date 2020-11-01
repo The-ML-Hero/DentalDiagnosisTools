@@ -9,7 +9,7 @@ An AI Powered Platform for Dental Diagnosis LIKE:
   
   
 If you are interested and don't want to setup everything in your PC. 
-
+('https://www.creativefreedom.co.uk/wp-content/uploads/2013/03/00-android-4-0_icons.png')
 
 Please Click Here [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/the-ml-hero/dentaldiagnosistools/main/app.py)
 
@@ -22,5 +22,5 @@ Please Click Here [![Open in Streamlit](https://static.streamlit.io/badges/strea
 2. ```pip install -r requirements.txt```
 3.  ```streamlit run app.py``` And Voila Open Up the URL Shown
 
-## Steps to Download As A Executable
+## Steps to Download As A Executable (Android,Windows,MacOS)
 [![Available on itch.io](http://jessemillar.github.io/available-on-itchio-badge/badge-color.png)](https://the-ml-hero.itch.io/dental-diagnosis)
