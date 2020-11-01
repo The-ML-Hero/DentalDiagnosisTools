@@ -23,4 +23,4 @@ Please Click Here [![Open in Streamlit](https://static.streamlit.io/badges/strea
 3.  ```streamlit run app.py``` And Voila Open Up the URL Shown
 
 ## Steps to Download As A Executable
-[![Available on itch.io](http://jessemillar.github.io/available-on-itchio-badge/badge-color.png)](https://jessemillar.itch.io/darkest-moon)
+[![Available on itch.io](http://jessemillar.github.io/available-on-itchio-badge/badge-color.png)](https://the-ml-hero.itch.io/dental-diagnosis)
