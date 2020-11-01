@@ -10,6 +10,7 @@ import display_app as udisp
 import root_seg
 import fracture_tooth_detection
 import flurosis_tooth_detection
+import download_page
 
 #os.system("git clone https://gitlab.com/sherwoodadithya/dentaldiagnosistoolkitai.git")
 #shutil.move('./dentaldiagnosistoolkitai/MASK_RCNN_ROOT_SEGMENTATION.pth', './MASK_RCNN_ROOT_SEGMENTATION.pth')
@@ -21,6 +22,7 @@ MENU = {
     "Root Anatomy Prediction" : root_seg,
     "Flurosis Detection" : flurosis_tooth_detection,	
     "Tooth Fracture Reconstruction" : tooth_reconstruction,	
+    "Download":download_page
 }
 
 st.sidebar.title("Choose A Use Case")
