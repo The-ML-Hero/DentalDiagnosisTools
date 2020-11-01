@@ -22,10 +22,16 @@ MENU = {
     "Flurosis Detection" : flurosis_tooth_detection,	
     "Tooth Fracture Reconstruction" : tooth_reconstruction,	
 }
+
 st.sidebar.title("Choose A Use Case")
 menu_selection = st.sidebar.radio("Use Case", list(MENU.keys()))
+stc.iframe("""<iframe frameborder="0" src="https://itch.io/embed/807153" width="552" height="167">
+<a href="https://the-ml-hero.itch.io/dental-diagnosis">Dental Diagnosis by The-ML-Hero</a>
+</iframe>""")
 menu = MENU[menu_selection]
-stc.iframe("""<iframe frameborder="0" src="https://itch.io/embed/807153" width="552" height="167"><a href="https://the-ml-hero.itch.io/dental-diagnosis">Dental Diagnosis by The-ML-Hero</a></iframe>""")
+
+
+
 with st.spinner(f"Loading {menu_selection} ..."):
       udisp.render_page(menu)
 
