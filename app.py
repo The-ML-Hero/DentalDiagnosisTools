@@ -24,12 +24,13 @@ MENU = {
 }
 
 st.sidebar.title("Choose A Use Case")
+stc.html("""<iframe frameborder="0" src="https://itch.io/embed/807153?linkback=true&amp;border_width=5" width="560" height="175"><a href="https://the-ml-hero.itch.io/dental-diagnosis">Dental Diagnosis by The-ML-Hero</a></iframe>""")
+
 menu_selection = st.sidebar.radio("Use Case", list(MENU.keys()))
 
 menu = MENU[menu_selection]
 
 
-stc.html("""<iframe frameborder="0" src="https://itch.io/embed/807153?linkback=true&amp;border_width=5" width="560" height="175"><a href="https://the-ml-hero.itch.io/dental-diagnosis">Dental Diagnosis by The-ML-Hero</a></iframe>""")
 with st.spinner(f"Loading {menu_selection} ..."):
       udisp.render_page(menu)
 
