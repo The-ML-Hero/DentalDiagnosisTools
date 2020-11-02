@@ -9,7 +9,7 @@ An AI Powered Platform for Dental Diagnosis LIKE:
   
   
 If you are interested and don't want to setup everything in your PC. 
-('https://www.creativefreedom.co.uk/wp-content/uploads/2013/03/00-android-4-0_icons.png')
+
 
 Please Click Here [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/the-ml-hero/dentaldiagnosistools/main/app.py)
 
