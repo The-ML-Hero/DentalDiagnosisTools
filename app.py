@@ -12,12 +12,12 @@ import fracture_tooth_detection
 import flurosis_tooth_detection
 import download_page
 
-if not os.path.exists("./MASK_RCNN_ROOT_SEGMENTATION"):
-    os.system("git clone https://gitlab.com/sherwoodadithya/dentaldiagnosistoolkitai.git")
-    shutil.move('./dentaldiagnosistoolkitai/MASK_RCNN_ROOT_SEGMENTATION.pth', './MASK_RCNN_ROOT_SEGMENTATION.pth')
+if os.path.exists("./MASK_RCNN_ROOT_SEGMENTATION"):
+   print("success")
+else:
+   os.system("git clone https://gitlab.com/sherwoodadithya/dentaldiagnosistoolkitai.git")
+   shutil.move('./dentaldiagnosistoolkitai/MASK_RCNN_ROOT_SEGMENTATION.pth', './MASK_RCNN_ROOT_SEGMENTATION.pth')
 
-#
-#
 #os.system("ls")
 #os.system("ifconfig")
 MENU = {
