@@ -71,7 +71,7 @@ def write():
         root_form = RootDetector(_id = secrets.token_hex(4),description='Uploaded Root Detector Image',image_root=image_root_seg)
         root_form.save()
 
-        if crop_image True:
+        if crop_image:
             st.image(img_pil, caption='Uploaded Image.', use_column_width=True)
             st.write("")
             cropped_img = st_cropper(img_pil, realtime_update=True, box_color="#0000ff",
