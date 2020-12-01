@@ -96,7 +96,7 @@ def write():
             image_root_seg_out = open(f'output_MASK{file_random}.png','rb')
             root_form_out = RootDetector(_id = secrets.token_hex(4),description='Predicted Root Detector Image',image_root=image_root_seg_out)
             root_form_out.save()
-         else:
+        else:
             st.image(img_pil, caption='Uploaded Image.', use_column_width=True)
             st.write("")
             cropped_img = st_cropper(img_pil, realtime_update=True, box_color="#0000ff",
