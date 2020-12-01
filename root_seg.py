@@ -43,6 +43,7 @@ def write():
     0.1, 1.0, 0.05
     )
     uploaded_file_img = st.file_uploader("Choose an Input Image", type="png",accept_multiple_files=False)
+    crop_image = st.checkbox('Crop?')
     if uploaded_file_img is not None:
         file_random = secrets.token_hex(4)
         o = int(np.random.randint(low=10301319,high=9987869996)) 
@@ -70,30 +71,56 @@ def write():
         root_form = RootDetector(_id = secrets.token_hex(4),description='Uploaded Root Detector Image',image_root=image_root_seg)
         root_form.save()
 
-        st.image(img_pil, caption='Uploaded Image.', use_column_width=True)
-        st.write("")
-        cropped_img = st_cropper(img_pil, realtime_update=True, box_color="#0000ff",
-                                aspect_ratio=(1,1))
-        cropped_img.save(f'input_mask_cropped{file_random}.png')
-        st.write("")
-        st.image(cropped_img,caption='Cropped Image.', use_column_width=True)
-        image = cv2.imread(f'input_mask_cropped{file_random}.png')
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        #image = cv2.copyMakeBorder(image, 150, 150, 150, 150, cv2.BORDER_CONSTANT,value=[255,255,255])
-        output = predictor(image)
-        v = Visualizer(image[:, :, ::-1],
-                        metadata=MetadataCatalog.get(f"tooth_segmentation_maskrcnn{o}"), 
-                        scale=2, 
-                        # remove the colors of unsegmented pixels. This option is only available for segmentation models
-        )
+        if crop_image True:
+            st.image(img_pil, caption='Uploaded Image.', use_column_width=True)
+            st.write("")
+            cropped_img = st_cropper(img_pil, realtime_update=True, box_color="#0000ff",
+                                    aspect_ratio=(1,1))
+            cropped_img.save(f'input_mask_cropped{file_random}.png')
+            st.write("")
+            st.image(cropped_img,caption='Cropped Image.', use_column_width=True)
+            image = cv2.imread(f'input_mask_cropped{file_random}.png')
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            #image = cv2.copyMakeBorder(image, 150, 150, 150, 150, cv2.BORDER_CONSTANT,value=[255,255,255])
+            output = predictor(image)
+            v = Visualizer(image[:, :, ::-1],
+                            metadata=MetadataCatalog.get(f"tooth_segmentation_maskrcnn{o}"), 
+                            scale=2, 
+                            # remove the colors of unsegmented pixels. This option is only available for segmentation models
+            )
 
-        out = v.draw_instance_predictions(output["instances"].to("cpu"))
-        cv2.imwrite(f'output_MASK{file_random}.png',out.get_image()[:, :, ::-1])
-        out_i = PIL.Image.open(f'output_MASK{file_random}.png') 
-        st.image(out_i, caption='Predicted Masks', use_column_width=True)
-        image_root_seg_out = open(f'output_MASK{file_random}.png','rb')
-        root_form_out = RootDetector(_id = secrets.token_hex(4),description='Predicted Root Detector Image',image_root=image_root_seg_out)
-        root_form_out.save()
+            out = v.draw_instance_predictions(output["instances"].to("cpu"))
+            cv2.imwrite(f'output_MASK{file_random}.png',out.get_image()[:, :, ::-1])
+            out_i = PIL.Image.open(f'output_MASK{file_random}.png') 
+            st.image(out_i, caption='Predicted Masks', use_column_width=True)
+            image_root_seg_out = open(f'output_MASK{file_random}.png','rb')
+            root_form_out = RootDetector(_id = secrets.token_hex(4),description='Predicted Root Detector Image',image_root=image_root_seg_out)
+            root_form_out.save()
+         else:
+            st.image(img_pil, caption='Uploaded Image.', use_column_width=True)
+            st.write("")
+            cropped_img = st_cropper(img_pil, realtime_update=True, box_color="#0000ff",
+                                    aspect_ratio=None)
+            cropped_img.save(f'input_mask_cropped{file_random}.png')
+            st.write("")
+            st.image(cropped_img,caption='Cropped Image.', use_column_width=True)
+            image = cv2.imread(f'input_mask_cropped{file_random}.png')
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            #image = cv2.copyMakeBorder(image, 150, 150, 150, 150, cv2.BORDER_CONSTANT,value=[255,255,255])
+            output = predictor(image)
+            v = Visualizer(image[:, :, ::-1],
+                            metadata=MetadataCatalog.get(f"tooth_segmentation_maskrcnn{o}"), 
+                            scale=2, 
+                            # remove the colors of unsegmented pixels. This option is only available for segmentation models
+            )
+
+            out = v.draw_instance_predictions(output["instances"].to("cpu"))
+            cv2.imwrite(f'output_MASK{file_random}.png',out.get_image()[:, :, ::-1])
+            out_i = PIL.Image.open(f'output_MASK{file_random}.png') 
+            st.image(out_i, caption='Predicted Masks', use_column_width=True)
+            image_root_seg_out = open(f'output_MASK{file_random}.png','rb')
+            root_form_out = RootDetector(_id = secrets.token_hex(4),description='Predicted Root Detector Image',image_root=image_root_seg_out)
+            root_form_out.save()
 """def write():
   st.set_option('deprecation.showfileUploaderEncoding', False)
   st.title('Root Anatomy Prediction by A.Adithya Sherwood IX-E')
