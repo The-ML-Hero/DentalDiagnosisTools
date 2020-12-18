@@ -18,7 +18,7 @@ Please Click Here [![Open in Streamlit](https://static.streamlit.io/badges/strea
 ```Make Sure You Have Python And PIP Installed!```
 
 1. ```git clone https://github.com/The-ML-Hero/DentalDiagnosisTools.git```
-2. Download the MaskRCNN Model And Place it inside the Root Folder Of the Repo
+2. Download the MaskRCNN Model And Place it inside the Root Folder Of the Repo (https://github.com/The-ML-Hero/DentalDiagnosisTools/releases/tag/v1)
 2. ```pip install -r requirements.txt```
 3.  ```streamlit run app.py``` And Voila Open Up the URL Shown
 
