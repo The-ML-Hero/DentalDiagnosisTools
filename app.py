@@ -14,10 +14,12 @@ import download_page
 
 if os.path.exists("./MASK_RCNN_ROOT_SEGMENTATION"):
    print("success")
+elif os.path.exists("./dentaldiagnosistoolkitai/MASK_RCNN_ROOT_SEGMENTATION.pth"):
+   shutil.move('./dentaldiagnosistoolkitai/MASK_RCNN_ROOT_SEGMENTATION.pth', './MASK_RCNN_ROOT_SEGMENTATION.pth')      
 else:
    os.system("git clone https://gitlab.com/sherwoodadithya/dentaldiagnosistoolkitai.git")
    os.system("ls")
-   shutil.move('./dentaldiagnosistoolkitai/MASK_RCNN_ROOT_SEGMENTATION.pth', './MASK_RCNN_ROOT_SEGMENTATION.pth')
+   
 
 #os.system("ls")
 #os.system("ifconfig")
