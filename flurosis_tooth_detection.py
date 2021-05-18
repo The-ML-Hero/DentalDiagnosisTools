@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 import PIL
-import cv2
 import streamlit.components.v1 as stc
 
 
@@ -20,7 +19,6 @@ def write():
         image_flurosis = open(f'./Test_Flurosis.jpg','rb')
         st.image(image, caption='Uploaded Image.', use_column_width=True)
         st.write("")
-        os.system(f"python3 detect.py --weights './weights/best (2).pt' --img 416 --conf {str(conf_score)} --source ./Test_Flurosis.jpg --output ./inference/output")
-        image_pred = PIL.Image.open(f'./inference/output/Test_Flurosis.jpg')
-        image_flurosis_out = open(f'./inference/output/Test_Flurosis.jpg','rb')
+        os.system(f"python3 detect.py --weights './weights/best (2).pt' --img 416 --conf {str(conf_score)} --source ./Test_Flurosis.jpg --output ./test.jpg")
+        image_pred = PIL.Image.open(f'./test.jpg')
         st.image(image_pred, caption='Predictions.', use_column_width=True)
