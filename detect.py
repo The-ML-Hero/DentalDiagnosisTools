@@ -4,7 +4,6 @@ import platform
 import shutil
 import time
 from pathlib import Path
-os.system("pip install opencv-python")
 import cv2
 import torch
 import torch.backends.cudnn as cudnn
