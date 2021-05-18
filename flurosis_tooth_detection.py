@@ -2,7 +2,6 @@ import streamlit as st
 import os
 import PIL
 import cv2
-import secrets
 import streamlit.components.v1 as stc
 
 
@@ -15,14 +14,13 @@ def write():
 
     
     if uploaded_file is not None:
-        file_random = secrets.token_hex(4)
         image = PIL.Image.open(uploaded_file)
         image = image.resize((416,416))
-        image.save(f'./Test_Flurosis{file_random}.jpg')
-        image_flurosis = open(f'./Test_Flurosis{file_random}.jpg','rb')
+        image.save(f'./Test_Flurosis.jpg')
+        image_flurosis = open(f'./Test_Flurosis.jpg','rb')
         st.image(image, caption='Uploaded Image.', use_column_width=True)
         st.write("")
-        os.system(f"python3 detect.py --weights './weights/best (2).pt' --img 416 --conf {str(conf_score)} --source ./Test_Flurosis{file_random}.jpg --output ./inference/output")
-        image_pred = PIL.Image.open(f'./inference/output/Test_Flurosis{file_random}.jpg')
-        image_flurosis_out = open(f'./inference/output/Test_Flurosis{file_random}.jpg','rb')
+        os.system(f"python3 detect.py --weights './weights/best (2).pt' --img 416 --conf {str(conf_score)} --source ./Test_Flurosis.jpg --output ./inference/output")
+        image_pred = PIL.Image.open(f'./inference/output/Test_Flurosis.jpg')
+        image_flurosis_out = open(f'./inference/output/Test_Flurosis.jpg','rb')
         st.image(image_pred, caption='Predictions.', use_column_width=True)
